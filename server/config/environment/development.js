@@ -8,5 +8,6 @@ module.exports = {
     uri: 'mongodb://devon:cookies@ds031631.mongolab.com:31631/yeomanday3'
   },
 
-  seedDB: true
+  seedDB: true,
+  cookieDB: false
 };

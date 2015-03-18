@@ -33,10 +33,18 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Cookies:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="cookie in cookies">
-        <li><h2>{{cookie.name}}</h2></li>
-        <li>Cookies left: {{cookie.numCookies}}</li>
-        <li>{{cookie.description}}</li>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-init= "update=false" ng-repeat="cookie in cookies">
+        <button type="button" class="btn btn-default" ng-click="deleteCookie(cookie)" aria-label="Left Align">
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </button>
+        <li ng-hide="update" ng-click="update=true"><h2>{{cookie.name}}</h2></li>
+        <li ng-show="update"><h2><input type="text" ng-model= 'cookie.name'></h2></li>
+        <li ng-hide="update" ng-click="update=true">Cookies left: {{cookie.numCookies}}</li>
+        <li ng-show="update"><input type="number" ng-model = 'cookie.numCookies'></li>
+        <li ng-hide="update" ng-click="update=true">{{cookie.description}}</li>
+        <li ng-show="update"><textarea ng-model = 'cookie.description' style="width: 350px; height: 100px;"></textarea></li>
+        <li ng-show="update"><button ng-click="updateCookie(cookie); update=false">Update</button></li>
+        <li ng-show="update"><button ng-click="update=false">Cancel</button></li>
       </ul>
     </div>
   </div>

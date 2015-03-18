@@ -3,6 +3,7 @@
 angular.module('yeomanDay3App')
   .controller('CookieCtrl', function ($scope, $http) {
     $scope.cookies = [];
+    $scope.originalName = '';
     $http.get('/api/cookie').success(function(cookies){
       $scope.cookies = cookies;
     });
@@ -24,5 +25,28 @@ angular.module('yeomanDay3App')
       $scope.newCookieName = '';
       $scope.newCookieNum = '';
       $scope.newCookieDescription = '';
-    }
+
+      $http.get('/api/cookie').success(function(cookies){
+        $scope.cookies = cookies;
+      });
+
+    };
+
+    $scope.updateCookie = function(cookie){
+      //if user tries to update cookie with any missing fields, will not add to database
+      if(cookie.name === '' || cookie.numCookies === '' || cookie.description === '') {
+        return;
+      }
+
+      $http.put('/api/cookie/' + cookie._id, {name: cookie.name, numCookies: cookie.numCookies, description: cookie.description});
+      console.log(cookie.name);
+    };
+
+    $scope.deleteCookie = function(cookie) {
+      $http.delete('/api/cookie/' + cookie._id);
+      setTimeout(function(){
+        $http.get('/api/cookie').success(function(cookies){
+          $scope.cookies = cookies;
+      })}, 500);
+    };
   });

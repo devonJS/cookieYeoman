@@ -16,8 +16,7 @@ mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Populate DB with sample data
 if(config.seedDB) { require('./config/seed'); }
-
-require('./cookieData');
+if(config.cookieDB){require('./cookieData');}
 
 // Setup server
 var app = express();

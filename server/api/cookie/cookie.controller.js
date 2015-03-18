@@ -40,6 +40,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Cookie.findById(req.params.id, function (err, cookie) {
+  //Cookie.find({name: new RegExp(req.params.name, "i")}, function(err,cookie){
     if (err) { return handleError(res, err); }
     if(!cookie) { return res.send(404); }
     var updated = _.merge(cookie, req.body);
