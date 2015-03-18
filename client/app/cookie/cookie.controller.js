@@ -42,11 +42,13 @@ angular.module('yeomanDay3App')
       console.log(cookie.name);
     };
 
+
+    //delete runs slower than get, so we have to wait for the success on delete first before refreshing
     $scope.deleteCookie = function(cookie) {
-      $http.delete('/api/cookie/' + cookie._id);
-      setTimeout(function(){
+      $http.delete('/api/cookie/' + cookie._id).success(function(){
         $http.get('/api/cookie').success(function(cookies){
           $scope.cookies = cookies;
-      })}, 500);
+        })
+      });
     };
   });
