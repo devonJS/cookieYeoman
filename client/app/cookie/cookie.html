@@ -1,0 +1,51 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Cookies</h1>
+    <p class="lead">Here is a list of cookies we sell</p>
+    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+  </div>
+</header>
+
+<!--search bar and new cookie form-->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <input type="text" ng-model="searchCookie" placeholder="Search">
+      <button type="button" class="btn btn-default" ng-click="search()" aria-label="Left Align">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+
+      Create New Cookie:
+      <input type="text" ng-model="newCookieName" placeholder = "Cookie Name">
+      <input type="number" ng-model="newCookieNum" placeholder = "# of Cookies" style="width: 100px;">
+      <input type="text" ng-model="newCookieDescription" placeholder="Cookie Description" style="width: 450px;">
+      <button type="button" class="btn btn-default" ng-click="addCookie()" aria-label="Left Align">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</div>
+<!--END search bar and new cookie form-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Cookies:</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="cookie in cookies">
+        <li><h2>{{cookie.name}}</h2></li>
+        <li>Cookies left: {{cookie.numCookies}}</li>
+        <li>{{cookie.description}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>Angular Fullstack v2.0.13 |
+      <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+      <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+  </div>
+</footer>
